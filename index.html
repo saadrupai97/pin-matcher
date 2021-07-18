@@ -12,8 +12,8 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="pin-generator half-width">
-                    <input class="form-control" type="text">
-                    <button class="generate-btn">Generate Pin</button>
+                    <input id="pin" class="form-control" type="text">
+                    <button onclick="generatePin()" class="generate-btn">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
@@ -54,5 +54,26 @@
             <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
+
+    <script>
+
+        function getPin(){
+            const random = Math.random() * 10000;
+            const pin = (random + ' ').split('.')[0];
+            
+            if(pin.length == 4){
+                return pin;
+            }
+            else{
+                 getPin();
+            }
+        }
+
+        //display generated pin
+        function generatePin(){
+            const pinInput = document.getElementById('pin');
+            pinInput.value = getPin();
+        }
+    </script>
 </body>
 </html>
